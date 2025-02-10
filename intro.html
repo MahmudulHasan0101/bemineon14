@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction</title>
+    <style>
+        body {
+            font-family: "Courier";
+            background-color: #fff5e4;
+            color: #ff9494;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        #container {
+            font-size: 30px;
+            padding: 20px;
+        }
+
+        #question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #answer {
+            display: block;
+            font-size: 30px;
+            text-align: center;
+            border: none;
+            background: none;
+            outline: none;
+            margin: 10px auto;
+            color:  #fa6c6c;
+        }
+
+        #answer::placeholder {
+            color:  #fa6c6c;
+            font-size: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.1s ease-in-out;
+        }
+
+        button:hover {
+            background: #e63950;
+            transform: scale(1.1);
+        }
+
+
+        @keyframes fade-in-out {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+        }
+
+        .fade-animation {
+            animation: fade-in-out 2s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <p id="question"> Hi there pretty one! How are you? </p>
+        <input type="text" id="answer" placeholder="—" >
+        <button id="nextbutton" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        let step = 0;
+        const questions = [
+            "Is your day going as gorgious as you? ;)",
+            "Hmm, I see... Your face tells me your favorite color is pink isn't it?",
+            "Oh, I see, breath in some oxygen, because you deserve it! :D",
+            "Are you ready!? >w<",
+            "*deep breath*"
+        ];
+
+
+        function nextQuestion() {
+            let input = document.getElementById("answer");
+            let container = document.getElementById("container");
+
+            container.classList.add('fade-animation');
+            container.addEventListener('animationend', function() {
+                container.classList.remove('fade-animation');
+            });
+
+            setTimeout(() => {
+                if (step < questions.length-1) {
+                    document.getElementById("question").textContent = questions[step];
+                    input.value = "";
+                    step++;
+                } 
+                else
+                {
+                    document.getElementById("question").textContent = questions[step];
+                    input.value = "";
+                    document.getElementById("nextbutton").onclick = function () {
+                        location.href = 'index.html';
+                    };
+                }
+
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

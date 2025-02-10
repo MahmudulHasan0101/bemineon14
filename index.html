@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-7px); }
+        50% { transform: translateX(7px); }
+        75% { transform: translateX(-7px); }
+        100% { transform: translateX(0); }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="mainbox">
+      <div id="valentineQuestion"><b>Will you be my valentine? <span id="emoji">🥰</span></b></div>
+      <button class="answerButton" id="yesButton" onclick="location.href='lastpage.html'">
+        Yes
+      </button>
+      <button class="answerButton" id="noButton">No</button>
+      <br />
+    </div>
+    <script>
+      let clickCount = 0;
+      let shakeIntensity = 0.2;
+      const emojis = ["🥰" ,"🥺", "😢", "😭", "😠", "😤", "😏"];
+      
+      document.getElementById("noButton").addEventListener("click", function () {
+        var yesButton = document.getElementById("yesButton");
+        var noButton = document.getElementById("noButton");
+        var emojiSpan = document.getElementById("emoji");
+        
+        clickCount++;
+        if (clickCount === 1) {
+          noButton.textContent = "Are you sure?";
+        }
+        else if (clickCount === 2) {
+          noButton.textContent = "ARE YOU SURE ABOUT IT!";
+        }
+        else if (clickCount === 3) {
+          noButton.textContent = "Drink water.. And make sure you are SURE";
+        } 
+        else if (clickCount === 4) {
+          noButton.textContent = "This is the final warning!";
+        } 
+        else if (clickCount === 5) {
+          noButton.textContent = "Are you serious! What do you need huh? I can give you everything!";
+        } 
+        else if (clickCount === 6) {
+          noButton.textContent = "You know what, choose No, I bet you can't -_-";
+        } 
+        else if (clickCount === 7) {
+          noButton.textContent = "Yes";
+          noButton.onclick = function () {
+            location.href = 'lastpage.html';
+          };
+        }
+        
+        if (clickCount <= 6) {
+          emojiSpan.textContent = emojis[Math.min(clickCount, emojis.length - 1)];
+        }
+        
+        var currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+        yesButton.style.fontSize = currentFontSize + 20 + "px"; // Increase font size
+        
+        // Increase shake speed
+        shakeIntensity += 0.3;
+        yesButton.style.animation = `shake ${0.5 / shakeIntensity}s infinite`;
+      });
+
+      function createLeaf() {
+            const leaf = document.createElement("div");
+            leaf.classList.add("leaf");
+            document.body.appendChild(leaf);
+            
+            let size = Math.random() * 20 + 10;
+            leaf.style.width = `${size}px`;
+            leaf.style.height = `${size}px`;
+            leaf.style.left = `${Math.random() * 100}vw`;
+            leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            
+            setTimeout(() => {
+                leaf.remove();
+            }, 5000);
+        }
+
+        setInterval(createLeaf, 300);
+    </script>
+  </body>
+</html>
