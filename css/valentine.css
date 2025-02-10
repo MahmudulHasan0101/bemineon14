@@ -48,7 +48,6 @@ img {
 #valentineQuestion {
   font-size: 50px;
   margin-bottom: 10px;
-  width: max-content;
   animation: floatUpDown 3s ease-in-out infinite;
 }
 .answerButton {
